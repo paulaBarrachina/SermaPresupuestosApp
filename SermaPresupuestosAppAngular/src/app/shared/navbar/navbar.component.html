@@ -1,0 +1,31 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <img class="navbar-brand" src="./assets/images/logoSermaBlanco.png"  href="localhost:4200">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" [routerLinkActiveOptions] =  "{exact:true}" routerLinkActive = "active-link">
+            <a class="nav-link active" aria-current="page" routerLink= "/">Presupuestos</a>
+          </li>
+          <li class="dropdown" [routerLinkActiveOptions] =  "{exact:true}" routerLinkActive = "active-link">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Datos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink= "/clientes">Clientes</a></li>
+              <li><a class="dropdown-item" routerLink= "/articulos">Artículos</a></li>
+              <li><a class="dropdown-item" routerLink= "/exclusiones">Exclusiones</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="titulo-app ">
+              <span class="titulo-navbar">Presupuestos App</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

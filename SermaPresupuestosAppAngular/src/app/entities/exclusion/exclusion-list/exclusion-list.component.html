@@ -1,0 +1,54 @@
+<div class="fondo-pagina">
+    <div class="container m-4 p-3 fondo-datos">
+        <h1>Exclusiones</h1>
+        <div class="alert alert-success" role="alert" *ngIf= "success">
+            {{mensaje}}
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf= "error">
+            {{mensaje}}
+          </div>
+        <div class="d-flex justify-content-end">
+            <a routerLink="/exclusiones/nueva">
+                <button class="btn btn-primary">Nueva exclusión</button>
+            </a>
+        </div>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exclusion of exclusiones">
+                    <td>{{exclusion.id}}</td>
+                    <td>{{exclusion.descripcion}}</td>
+                    <td>
+                        <a [routerLink]="['/exclusiones/editar', exclusion.id]">
+                            <button class="btn btn-outline-primary">Modificar</button>
+                        </a>
+                        <button class="ms-2 btn btn-outline-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" [ngStyle]="{'display': display}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminar</h5>
+          <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar la exclusión con id {{exclusionAEliminar}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="eliminar(exclusionAEliminar)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+h1{
+    color: #008fd5;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.btn {
+    border-radius: 0.50rem;
+}
+
+.btn-primary {
+    background-color: #008fd5;
+    border-color: #008fd5;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: aqua;
+    border-color: aqua;
+}

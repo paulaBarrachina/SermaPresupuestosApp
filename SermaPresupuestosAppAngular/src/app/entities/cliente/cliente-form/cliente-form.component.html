@@ -1,0 +1,31 @@
+<div class="container mt-3">
+    <h2 *ngIf="modoAlta">Crear cliente</h2>
+    <h2 *ngIf="!modoAlta">Modificar cliente</h2>
+    <div class="alert alert-success" role="alert" *ngIf= "success">
+        {{mensaje}}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf= "error">
+        {{mensaje}}
+      </div>
+    <form action="" class="mt-2">
+        <div class="mt-2 mb-4">
+            <label for="id" class="form-label">Id:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="cliente.id" name="id">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="direccion" class="form-label">Dirección:</label>
+            <input type="text" class="form-control" [(ngModel)]="cliente.direccion" name="direccion">
+        </div>
+    </form>
+    <div class="d-flex justify-content-between">
+        <a routerLink="/clientes">
+            <button class="btn btn-secondary">Volver</button>
+        </a>
+        <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+    </div>
+</div>
+

@@ -1,0 +1,60 @@
+<div class="fondo-pagina">
+    <div class="container-fluid fondo-datos">
+        <h1>Artículos</h1>
+        <div class="alert alert-success" role="alert" *ngIf= "success">
+            {{mensaje}}
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf= "error">
+            {{mensaje}}
+          </div>
+        <div class="d-flex justify-content-end">
+            <a routerLink="/articulos/nuevo">
+                <button class="btn btn-primary">Nuevo artículo</button>
+            </a>
+        </div>
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Descripción Corta</th>
+                    <th>Descripción Larga</th>
+                    <th>Imagen</th>
+                    <th>Coste</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let articulo of articulos">
+                    <td>{{articulo.id}}</td>
+                    <td>{{articulo.descripcionCorta}}</td>
+                    <td>{{articulo.descripcionLarga}}</td>
+                    <td>{{articulo.imagen}}</td>
+                    <td>{{articulo.coste}}</td>
+                    <td>
+                        <a [routerLink]="['/articulos/editar', articulo.id]">
+                            <button id="btnEditar" class="btn btn-outline-primary">Modificar</button>
+                        </a>
+                        <button id="btnEliminar" class="ms-2 btn btn-outline-danger" (click)= "abrirModalEliminar(articulo.id!)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" [ngStyle]="{'display': display}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminar</h5>
+          <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar el articulo con id {{articuloAEliminar}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="eliminar(articuloAEliminar)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

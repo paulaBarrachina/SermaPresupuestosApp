@@ -1,0 +1,39 @@
+<div class="container mt-3">
+    <h2 *ngIf="modoAlta">Crear artículo</h2>
+    <h2 *ngIf="!modoAlta">Modificar artículo</h2>
+    <div class="alert alert-success" role="alert" *ngIf= "success">
+        {{mensaje}}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf= "error">
+        {{mensaje}}
+      </div>
+    <form action="" class="mt-2">
+        <div class="mt-2 mb-4">
+            <label for="id" class="form-label">Id:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="articulo.id" name="id">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="descripcionCorta" class="form-label">Descripción Corta:</label>
+            <input type="text" class="form-control" [(ngModel)]="articulo.descripcionCorta" name="descripcionCorta">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="descripcionLarga" class="form-label">Descripción Larga:</label>
+            <input type="text" class="form-control" [(ngModel)]="articulo.descripcionLarga" name="descripcionLarga">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="imagen" class="form-label">Imagen:</label>
+            <input type="image" class="form-control" [(ngModel)]="articulo.imagen" name="imagen">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="coste" class="form-label">Coste:</label>
+            <input type="number" class="form-control" [(ngModel)]="articulo.coste" name="coste">
+        </div>
+    </form>
+    <div class="d-flex justify-content-between">
+        <a routerLink="/articulos">
+            <button class="btn btn-secondary">Volver</button>
+        </a>
+        <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+    </div>
+</div>
+

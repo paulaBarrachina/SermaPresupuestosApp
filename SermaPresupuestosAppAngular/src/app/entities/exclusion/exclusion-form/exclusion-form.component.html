@@ -1,0 +1,27 @@
+<div class="container mt-3">
+    <h2 *ngIf="modoAlta">Crear exclusión</h2>
+    <h2 *ngIf="!modoAlta">Modificar exclusión</h2>
+    <div class="alert alert-success" role="alert" *ngIf= "success">
+        {{mensaje}}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf= "error">
+        {{mensaje}}
+      </div>
+    <form action="" class="mt-2">
+        <div class="mt-2 mb-4">
+            <label for="id" class="form-label">Id:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="exclusion.id" name="id">
+        </div>
+        <div class="mt-2 mb-4">
+            <label for="nombre" class="form-label">Descripción:</label>
+            <input type="text" class="form-control" [(ngModel)]="exclusion.descripcion" name="descripcion">
+        </div>
+    </form>
+    <div class="d-flex justify-content-between">
+        <a routerLink="/exclusiones">
+            <button class="btn btn-secondary">Volver</button>
+        </a>
+        <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+    </div>
+</div>
+
