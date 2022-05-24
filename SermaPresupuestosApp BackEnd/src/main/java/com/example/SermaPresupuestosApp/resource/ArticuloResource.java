@@ -1,9 +1,11 @@
 package com.example.SermaPresupuestosApp.resource;
 import com.example.SermaPresupuestosApp.service.IArticuloService;
 import com.example.SermaPresupuestosApp.service.dto.ArticuloDTO;
-import com.example.SermaPresupuestosApp.service.dto.ClienteDTO;
-import com.example.SermaPresupuestosApp.service.impl.ArticuloService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
+
 
 import java.util.List;
 
@@ -33,9 +35,18 @@ public class ArticuloResource {
 
     @CrossOrigin
     @PostMapping("/articulos")
-    public ArticuloDTO crearArticulo (@RequestBody ArticuloDTO articuloDTO) {
-        return articuloService.guardar(articuloDTO);
+    public ResponseEntity crearArticulo (@RequestBody ArticuloDTO articuloDTO) {
+
+        if (articuloDTO.getDescripcionCorta() == null) {
+            return  ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("El campo Descripción corta no puede estar vacío");
+        }
+
+        ArticuloDTO articuloInsertado = this.articuloService.guardar(articuloDTO);
+        return new ResponseEntity<ArticuloDTO>(articuloInsertado, new HttpHeaders(), HttpStatus.CREATED);
     }
+
 
     @CrossOrigin
     @PutMapping ("/articulos")

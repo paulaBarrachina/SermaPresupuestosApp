@@ -18,5 +18,5 @@ public class Articulo {
     @Column (name = "imagen")
     private byte[] image;
     @Column
-    private Number coste;
+    private Double coste;
 }

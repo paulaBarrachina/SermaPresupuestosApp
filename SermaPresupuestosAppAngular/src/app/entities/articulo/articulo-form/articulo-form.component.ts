@@ -58,6 +58,7 @@ export class ArticuloFormComponent implements OnInit {
     this.error = false;
     this.success = false;
     this.mensaje = "";
+
     if (this.modoAlta) {
       this.articuloService.crearArticulo(this.articulo).subscribe(
         (data: Articulo) => {
@@ -67,7 +68,7 @@ export class ArticuloFormComponent implements OnInit {
         }, (err) => {
           console.log(err);
           this.error = true;
-          this.mensaje = "Se ha producido un error al guardar el artículo. Error: " + err.name;
+          this.mensaje = "Se ha producido un error al guardar el artículo. Error: " + err.error;
         }
       );
     } else {

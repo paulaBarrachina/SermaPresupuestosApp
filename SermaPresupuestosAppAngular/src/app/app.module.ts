@@ -13,6 +13,7 @@ import { ExclusionListComponent } from './entities/exclusion/exclusion-list/excl
 import { ExclusionFormComponent } from './entities/exclusion/exclusion-form/exclusion-form.component';
 import { ArticuloListComponent } from './entities/articulo/articulo-list/articulo-list.component';
 import { ArticuloFormComponent } from './entities/articulo/articulo-form/articulo-form.component';
+import { ClienteListPagedComponent } from './entities/cliente/cliente-list-paged/cliente-list-paged.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ArticuloFormComponent } from './entities/articulo/articulo-form/articul
     ExclusionListComponent,
     ExclusionFormComponent,
     ArticuloListComponent,
-    ArticuloFormComponent
+    ArticuloFormComponent,
+    ClienteListPagedComponent
   ],
   imports: [
     BrowserModule,

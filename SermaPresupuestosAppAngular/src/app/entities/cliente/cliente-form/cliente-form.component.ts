@@ -68,7 +68,7 @@ export class ClienteFormComponent implements OnInit {
         }, (err) => {
           console.log(err);
           this.error = true;
-          this.mensaje = "Se ha producido un error al guardar el cliente. Error: " + err.name;
+          this.mensaje = "Se ha producido un error al guardar el cliente. Error: " + err.error;
         }
       );
     } else {

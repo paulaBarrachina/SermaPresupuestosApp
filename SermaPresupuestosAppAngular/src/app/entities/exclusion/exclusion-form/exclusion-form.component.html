@@ -1,27 +1,35 @@
-<div class="container mt-3">
-    <h2 *ngIf="modoAlta">Crear exclusión</h2>
-    <h2 *ngIf="!modoAlta">Modificar exclusión</h2>
-    <div class="alert alert-success" role="alert" *ngIf= "success">
+<div class="fondo-pagina">
+    <div class="shadow m-4 p-3 fondo-datos">
+        <h1 *ngIf="modoAlta">Crear exclusión</h1>
+        <h1 *ngIf="!modoAlta">Modificar exclusión</h1>
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="success">
         {{mensaje}}
-      </div>
-      <div class="alert alert-danger" role="alert" *ngIf= "error">
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="error">
         {{mensaje}}
-      </div>
-    <form action="" class="mt-2">
-        <div class="mt-2 mb-4">
-            <label for="id" class="form-label">Id:</label>
-            <input type="text" class="form-control" readonly [(ngModel)]="exclusion.id" name="id">
-        </div>
-        <div class="mt-2 mb-4">
-            <label for="nombre" class="form-label">Descripción:</label>
-            <input type="text" class="form-control" [(ngModel)]="exclusion.descripcion" name="descripcion">
-        </div>
-    </form>
-    <div class="d-flex justify-content-between">
+    </div>
+
+    <div class="shadow m-4 p-3 fondo-datos">
+        <form action="" class="mt-2">
+            <div class="mt-2 mb-4">
+                <label for="id" class="form-label">Id:</label>
+                <input type="text" class="form-control" readonly [(ngModel)]="exclusion.id" name="id">
+            </div>
+            <div class="mt-2 mb-4">
+                <label for="nombre" class="form-label">Descripción:</label>
+                <input type="text" class="form-control" [(ngModel)]="exclusion.descripcion" name="descripcion">
+            </div>
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-between m-5">
         <a routerLink="/exclusiones">
             <button class="btn btn-secondary">Volver</button>
         </a>
         <button class="btn btn-primary" (click)="guardar()">Guardar</button>
     </div>
+    
 </div>
-

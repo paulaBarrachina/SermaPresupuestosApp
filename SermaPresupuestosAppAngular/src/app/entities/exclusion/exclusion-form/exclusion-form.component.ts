@@ -68,7 +68,7 @@ export class ExclusionFormComponent implements OnInit {
         }, (err) => {
           console.log(err);
           this.error = true;
-          this.mensaje = "Se ha producido un error al guardar la exclusión. Error: " + err.name;
+          this.mensaje = "Se ha producido un error al guardar la exclusión. Error: " + err.error;
         }
       );
     } else {

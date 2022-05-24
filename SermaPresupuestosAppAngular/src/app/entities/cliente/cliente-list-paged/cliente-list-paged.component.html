@@ -1,0 +1,107 @@
+<div class="fondo-pagina">
+
+  <div class="shadow m-4 p-3 fondo-datos">
+    <h1>Clientes</h1>
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="success">
+    {{mensaje}}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    {{mensaje}}
+  </div>
+
+
+  <!--Filtros-->
+  <div class="shadow m-4 p-3 fondo-datos">
+    <h2 style="color: gray; font-size: 1.5em; margin-bottom: 10px;">Filtros</h2>
+    <form>
+      <div class="row">
+        <div class="form-group col-12 col-md-3">
+          <label for="id">Id</label>
+          <input type="text" class="form-control" id="id" name="filtroId" [(ngModel)]="filtroId">
+        </div>
+
+        <div class="form-group col-12 col-md-7">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="filtroNombre" [(ngModel)]="filtroNombre">
+        </div>
+
+        <div class="col-12 col-md-2">
+          <button id="btnBuscar" class="btn btn-secondary" style="margin-top: 18px;" (click)="buscar()"><img
+              class="buscar-imagen" src="./assets/images/iconos/buscar.svg" alt="Buscar">Buscar</button>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+
+  <!--Tabla-->
+  <div class="shadow m-4 p-3 fondo-datos">
+    <h2 style="color: gray; font-size: 1.5em; margin-bottom: 10px;">Lista</h2>
+
+    <div class="d-flex justify-content-end">
+      <a routerLink="/clientes/nuevo">
+        <button class="btn btn-primary" style="margin-top: -20px;">Nuevo cliente</button>
+      </a>
+    </div>
+
+    <table class="table table-striped table-bordered align-middle mt-5">
+      <thead class="table-primary">
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.direccion}}</td>
+          <td>
+            <a [routerLink]="['/clientes/editar', cliente.id]">
+              <img class="editar-imagen" src="./assets/images/iconos/editar.svg" alt="Modificar">
+              <!--<button class="btn btn-outline-primary">Modificar</button>-->
+            </a>
+            <img class="eliminar-imagen" src="./assets/images/iconos/eliminar.svg" alt="Eliminar"
+              (click)="abrirModalEliminar(cliente.id!)">
+            <!--<<button class="ms-2 btn btn-outline-danger" (click)="abrirModalEliminar(cliente.id!)">Eliminar</button>-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Paginación-->
+  <div class="botoneraPaginacion" >
+    <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="navegarAnterior()"><img class="anterior-imagen"
+        src="./assets/images/iconos/paginaAnterior.svg" alt="Anterior"></button>
+    <span>Página {{(page+1)}} de {{totalPages}} - Total clientes: {{totalElements}}</span>
+    <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="navegarSiguiente()"><img class="siguiente-imagen"
+      src="./assets/images/iconos/paginaSiguiente.svg" alt="Siguiente"></button>
+  </div>
+
+</div>
+
+
+<!--Modal-->
+<div class="modal fade" id="exampleModal" [ngStyle]="{'display': display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminar</h5>
+        <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar el cliente con id {{clienteAEliminar}}?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="eliminar(clienteAEliminar)">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

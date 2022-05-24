@@ -3,9 +3,13 @@ package com.example.SermaPresupuestosApp.service.impl;
 
 import com.example.SermaPresupuestosApp.model.Cliente;
 import com.example.SermaPresupuestosApp.repository.ClienteRepository;
+import com.example.SermaPresupuestosApp.repository.spec.ClienteSpec;
+import com.example.SermaPresupuestosApp.repository.spec.SearchCriteria;
 import com.example.SermaPresupuestosApp.service.IClienteService;
 import com.example.SermaPresupuestosApp.service.dto.ClienteDTO;
 import com.example.SermaPresupuestosApp.service.mapper.ModelMapperUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -26,6 +30,24 @@ public class ClienteService implements IClienteService {
     public List<ClienteDTO> obtenerTodos() {
         List<Cliente> clientes = clienteRepository.findAll();
         return ModelMapperUtils.mapAll(clientes, ClienteDTO.class);
+    }
+
+    @Override
+    public Page<ClienteDTO> obtenerTodosPaginado(Pageable pageable) {
+        Page<Cliente> clientes = clienteRepository.findAll(pageable);
+        Page<ClienteDTO> dtoPage = clientes.map(cliente ->ModelMapperUtils.map(cliente, ClienteDTO.class));
+        return dtoPage;
+    }
+
+    @Override
+    public Page<ClienteDTO> obtenerTodosPagSpec(Pageable pageable, SearchCriteria[] searchCriteria) {
+        ClienteSpec spec = new ClienteSpec();
+        for (SearchCriteria criteria: searchCriteria) {
+            spec.add(criteria);
+        }
+        Page<Cliente> clientes = clienteRepository.findAll(spec, pageable);
+        Page<ClienteDTO> clienteDTOS = clientes.map(cliente -> ModelMapperUtils.map(cliente, ClienteDTO.class));
+        return clienteDTOS;
     }
 
     @Override

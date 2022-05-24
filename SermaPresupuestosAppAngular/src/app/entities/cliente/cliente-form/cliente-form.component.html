@@ -1,31 +1,52 @@
-<div class="container mt-3">
-    <h2 *ngIf="modoAlta">Crear cliente</h2>
-    <h2 *ngIf="!modoAlta">Modificar cliente</h2>
-    <div class="alert alert-success" role="alert" *ngIf= "success">
+<div class="fondo-pagina">
+
+    <div class="shadow m-4 p-3 fondo-datos">
+        <h1 *ngIf="modoAlta">Crear cliente</h1>
+        <h1 *ngIf="!modoAlta">Modificar cliente</h1>
+    </div>
+
+    <div class="alert alert-success" role="alert" *ngIf="success">
         {{mensaje}}
-      </div>
-      <div class="alert alert-danger" role="alert" *ngIf= "error">
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
         {{mensaje}}
-      </div>
-    <form action="" class="mt-2">
-        <div class="mt-2 mb-4">
-            <label for="id" class="form-label">Id:</label>
-            <input type="text" class="form-control" readonly [(ngModel)]="cliente.id" name="id">
-        </div>
-        <div class="mt-2 mb-4">
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre">
-        </div>
-        <div class="mt-2 mb-4">
-            <label for="direccion" class="form-label">Dirección:</label>
-            <input type="text" class="form-control" [(ngModel)]="cliente.direccion" name="direccion">
-        </div>
-    </form>
-    <div class="d-flex justify-content-between">
-        <a routerLink="/clientes">
+    </div>
+
+    <div class="shadow m-4 p-3 fondo-datos">
+        <form class="mt-2" name="clienteForm" role="form" novalidate #editForm="ngForm" autocomplete="off">
+            <div class="mt-2 mb-4">
+                <label for="id" class="form-label">Id:</label>
+                <input type="text" class="form-control" readonly [(ngModel)]="cliente.id" name="id">
+            </div>
+            <div class="mt-2 mb-4">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" class="form-control" [(ngModel)]="cliente.nombre" name="nombre"
+                    maxlength="100" required>
+            </div>
+
+            <!-- Validación campo -->
+            <div [hidden]="!(editForm.controls['nombre']?.dirty && editForm.controls['nombre']?.invalid)">
+                <small class="form-text text-danger" [hidden]="!editForm.controls['nombre']?.errors?.['required']">
+                    Este campo es requerido
+                </small>
+                <small class="form-text text-danger" [hidden]="!editForm.controls['nombre']?.errors?.['maxlength']">
+                    Este campo no puede superar los 100 caracteres
+                </small>
+            </div>
+
+            <div class="mt-2 mb-4">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.direccion" name="direccion"
+                    maxlength="100">
+            </div>
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-between m-5">
+        <a routerLink="/clientes-list-paged">
             <button class="btn btn-secondary">Volver</button>
         </a>
-        <button class="btn btn-primary" (click)="guardar()">Guardar</button>
+        <button [disabled]="editForm.form.invalid" class="btn btn-primary" id=btnGuardar
+            (click)="guardar()">Guardar</button>
     </div>
 </div>
-
